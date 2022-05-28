@@ -12,7 +12,7 @@ ZP_API_STARTPAY = "https://www.zarinpal.com/pg/StartPay/{authority}"
 amount = 11000  # Rial / Required
 description = "توضیحات مربوط به تراکنش را در این قسمت وارد کنید"  # Required
 email = 'email@example.com'  # Optional
-mobile = '09123456789'  # Optional
+mobile = ''  # Optional
 # Important: need to edit for realy server.
 CallbackURL = 'http://localhost:8000/gateway/verify/'
 
