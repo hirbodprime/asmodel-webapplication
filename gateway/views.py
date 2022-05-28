@@ -5,7 +5,7 @@ import requests
 import json
 from .models import Transactions
 
-MERCHANT = '20464bc2-ff0e-4ee1-b4ec-63c870723169'
+MERCHANT = ''
 ZP_API_REQUEST = "https://api.zarinpal.com/pg/v4/payment/request.json"
 ZP_API_VERIFY = "https://api.zarinpal.com/pg/v4/payment/verify.json"
 ZP_API_STARTPAY = "https://www.zarinpal.com/pg/StartPay/{authority}"
