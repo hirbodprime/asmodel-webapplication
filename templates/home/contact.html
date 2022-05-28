@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'homeview' %}">خانه</a></li>
+                            <li>تماس با ما</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+{% comment %} 
+    <div class="contact_page_bg">
+        <!--contact map start-->
+        <div class="contact_map">
+            <div class="map-area">
+                <div id="googleMap"></div>
+            </div>
+        </div>
+        <!--contact map end--> {% endcomment %}
+        <div class="container">
+            <!--contact area start-->
+            <div class="contact_area">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="contact_message content">
+                            <h3>تماس با ما</h3>
+                            <p>درحال حاضر فروش در سایت مجاز نمیباشد. برای خرید لطفا به ما پیام/ایمیل و یا زنگ بزنید.</p>
+                            <ul>
+								{% comment %} <li><i class="fa fa-fw fa-fax"></i> تبریز، چهارراه آبرسان، فلکه دانشگاه، برج بلور، طبقه 678، واحد 85</li> {% endcomment %}
+								<li><i class="fa fa-fw fa-phone"></i> <span class="ltr-text">(+98)912 198 9487</span></li>
+								<li><i class="fa fa-fw fa-envelope-o"></i> <a href="#">info@mastersakhteman.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="contact_message form">
+                            <h3>با ما در میان بگذارید</h3>
+                            <form id="contact-form" method="POST" action="{% url 'contactview' %}">
+                                {% csrf_token %}
+                                {{form.as_p}}
+                                <button type="submit">ارسال</button> 
+                                {% comment %} {% csrf_token %}
+								<p>
+									<label> نام شما (الزامی)</label>
+									<input name="name" placeholder="نام *"   type="text" required>
+								</p>
+								<p>
+									<label> ایمیل شما (الزامی)</label>
+									<input name="email" placeholder="* ایمیل" type="email" dir="ltr" required>
+								</p>
+								<p>
+									<label> موضوع</label>
+									<input name="subject" placeholder="موضوع" type="text">
+								</p>
+								<div class=" contact_textarea">
+									<label> پیام شما</label>
+									<textarea name="message" placeholder="پیام *" class="form-control2" required></textarea>
+								</div>
+								<button type="submit">ارسال</button>
+								<p class="form-messege"></p>  {% endcomment %}
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--contact area end-->
+        </div>
+    </div>
+{% endblock body %}

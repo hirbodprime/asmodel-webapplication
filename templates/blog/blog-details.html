@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'homeview' %}">خانه</a></li>
+                            <li>جزئیات مطلب بلاگ</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <!--blog body area start-->
+    <div class="blog_bg_area">
+        <div class="container">
+            <div class="blog_page_section">
+                <div class="row">
+                    <div class="col-lg-9 col-md-12">
+                        <!--blog grid area start-->
+                        <div class="blog_wrapper blog_details">
+                            <article class="single_blog">
+                                <figure>
+                                    <div class="post_header">
+                                        <h3 class="post_title"> {{b.BlogTitle}}</h3>
+                                        <div class="blog_meta">
+                                            <span class="author">ارسال توسط : {{b.writer}} /</span>
+                                            <span class="meta_date">در: {{b.Blog_Created_At}} </span>
+                                            {% comment %} <span class="post_category">در : <a href="#">شرکت، عکس، مسافرت</a></span> {% endcomment %}
+                                        </div>
+                                    </div>
+                                    <div class="blog_thumb">
+                                        <img src="{{b.BlogImage.url}}" alt="">
+                                    </div>
+                                    <figcaption class="blog_content">
+                                        <div class="post_content">
+                                            <p>{{b.BlogBody}}</p>
+                                            <blockquote>
+                                                <p>{{b.Blogquote}}</p>
+                                            </blockquote>
+                                            <p>{{b.BlogBody2}}</p>
+                                            
+                                        </div>
+                                        <div class="entry_content">
+                                            <div class="post_meta">
+                                                <span>برچسب ها: </span>
+                                                <span>{{b.BlogTags}}</span>
+                                            </div>
+
+                                            {% comment %} <div class="social_sharing">
+                                                <p>اشتراک گذاری این مطلب:</p>
+                                                <ul>
+                                                    <li><a href="#" title="facebook"><i class="fa fa-facebook"></i></a></li>
+                                                    <li><a href="#" title="twitter"><i class="fa fa-twitter"></i></a></li>
+                                                    <li><a href="#" title="pinterest"><i class="fa fa-pinterest"></i></a></li>
+                                                    <li><a href="#" title="google+"><i class="fa fa-google-plus"></i></a></li>
+                                                    <li><a href="#" title="linkedin"><i class="fa fa-linkedin"></i></a></li>
+                                                </ul>
+                                            </div> {% endcomment %}
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                            {% comment %} <div class="related_posts">
+                                <h3>مجله های مرتبط</h3>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6">
+                                         <article class="single_related">
+                                            <figure>
+                                                <div class="related_thumb">
+                                                    <img src="{% static 'img/blog/blog7.jpg'%}" alt="">
+                                                </div>
+                                                <figcaption class="related_content">
+                                                    <h4><a href="#">مطلب دارای گالری</a></h4>
+                                                    <div class="blog_meta">
+                                                        <span class="author">توسط: <a href="#">مدیر</a> / </span>
+                                                        <span class="meta_date"> 11 آذر 1398	</span>
+                                                    </div>
+                                                </figcaption>
+                                            </figure>
+                                        </article> 
+                                    </div>
+                                </div>
+                            </div> {% endcomment %}
+                            {% for c in com %}
+                            <div class="comments_box">
+                                <h3>دیدگاه </h3>
+                                <div class="comment_list">
+                                    <div class="comment_thumb">
+                                        <img src="{% static 'img/blog/comment3.png.jpg'%}" alt="">
+                                    </div>
+                                    <div class="comment_content">
+                                        <div class="comment_meta">
+                                            <h5><a href="#">{{c.name}}</a></h5>
+                                            <span>{{c.commentPosted_Date}}</span>
+                                        </div>
+                                        <p>{{c.content}}</p>
+                                        {% comment %} <div class="comment_reply">
+                                            <a href="#">پاسخ</a>
+                                        </div> {% endcomment %}
+                                    </div>
+                                </div>
+                                {% comment %} <div class="comment_list list_two">
+                                    <div class="comment_thumb">
+                                        <img src="{% static 'img/blog/comment3.png.jpg'%}" alt="">
+                                    </div>
+                                    <div class="comment_content">
+                                        <div class="comment_meta">
+                                            <h5><a href="#">دمو</a></h5>
+                                            <span>16 آذر 1398 ساعت 1:38 صبح</span>
+                                        </div>
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از</p>
+                                        <div class="comment_reply">
+                                            <a href="#">پاسخ</a>
+                                        </div>
+                                    </div>
+                                </div> {% endcomment %}      
+                            </div>
+                            {% endfor %}
+                            <div class="comments_form">
+                                <h4><a href="{% url 'commentview' b.BlogTitle %}">ارسال دیدگاه</a></h4>
+                            </div>
+
+                        </div>
+                        <!--blog grid area start-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--blog section area end-->
+{% endblock body %}

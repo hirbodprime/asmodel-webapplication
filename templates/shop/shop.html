@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'homeview' %}">خانه</a></li>
+                            <li>فروشگاه</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <!--shop  area start-->
+    <div class="shop_area shop_fullwidth">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+
+                    <!--shop banner area start-->
+                    {% comment %} <div class="shop_banner_area mb-30">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="shop_banner_thumb">
+                                    <img src="{% static 'img/bg/banner16'%}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                    <!--shop banner area end-->
+                    <!--shop toolbar start-->
+                    <div class="shop_toolbar_wrapper">
+                        <div class="shop_toolbar_btn">
+                            <button data-role="grid_4" type="button" class=" active btn-grid-4" data-toggle="tooltip" title="4"></button>
+                            <button data-role="grid_list" type="button" class="btn-list" data-toggle="tooltip" title="List"></button>
+                        </div>
+						{% comment %} <div class="niceselect_container">
+							<form action="#">
+								<label>ترتیب:</label>
+								<select class="select_option" name="orderby" id="short">
+                                    <option selected value="1">امتیاز متوسط</option>
+                                    <option value="2">محبوبیت</option>
+                                    <option value="3">تاریخ ارسال</option>
+                                    <option value="4">قیمت صعودی</option>
+                                    <option value="5">قیمت نزولی</option>
+                                    <option value="6">نام محصول</option>
+                                </select>
+                            </form>
+                        </div> 
+                        <div class="page_amount">
+                            <p>نمایش 1-9 از 21 محصول</p>
+                        </div> {% endcomment %}
+                    </div>
+                    <!--shop toolbar end-->
+
+                    <!--shop wrapper start-->
+                    <div class="row no-gutters shop_wrapper">
+                        {% for p in pro %}
+                        <div class="col-lg-3 col-md-4 col-12 ">
+                            <article class="single_product">
+                                <figure>
+                                    <div class="product_thumb">
+                                        <a class="primary_img" href="{% url 'productview' p.ProductName %}"><img src="{{p.image.url}}" alt=""></a>
+                                        {% if p.image2.url != None %}
+                                        <a class="secondary_img" href="{% url 'productview' p.ProductName %}"><img src="{{p.image2.url}}" alt=""></a>
+                                        {% endif %}
+                                        <div class="action_links">
+                                            <ul>
+                                                {% if user.is_authenticated %}
+                                                <li class="wishlist"><a href="" onclick="add_wish_list_api('{{p.id}}')" id="add_wish_list_api" title="افزودن به علاقه‌مندی‌ها"><i class="ion-android-favorite-outline"></i></a></li>
+                                                {% else %}
+                                                <li class="wishlist"><a href="{% url 'loginview' %}" title="افزودن به علاقه‌مندی‌ها"><i class="ion-android-favorite-outline"></i></a></li>
+                                                {% endif %}
+                                                <li class="compare"><a href="{% url 'com' %}" title="افزودن به مقایسه"><i class="ion-ios-settings-strong"></i></a></li>
+                                                <li class="quick_button"><a href="" data-toggle="modal" data-target="#modal_box" title="مشاهده سریع"><i class="ion-ios-search-strong"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="product_content grid_content">
+                                        <div class="product_content_inner">
+                                            <h6>کارخانه ی تولیدی : {{p.category.some}}</h6>
+                                            <h5>نام محصول : {{p.ProductName}}</h5>
+                                            
+                                            <h4 class="product_name"><a href="{% url 'productview' p.ProductName %}">{{p.getsnippet}}...</a></h4>
+                                            
+                                            {% comment %} <div class="product_rating">
+                                                <ul>
+                                                    <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                    <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                    <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                    <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                    <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                </ul>
+                                            </div> {% endcomment %}
+                                            <div class="price_box">
+                                                {% comment %} <span class="old_price"></span> {% endcomment %}
+                                                <span class="current_price">{{p.show_price}} تومان</span>
+                                            </div>
+                                        </div>
+                                        <div class="add_to_cart">
+                                            {% if user.is_authenticated %}
+                                            <a href="" id="add_api_cart" onclick="add_api_cart('{{ p.id }}')"  title="افزودن به سبد">افزودن به سبد</a>
+                                            {% else %}
+                                            <a href="{% url 'loginview' %}"  title="افزودن به سبد">افزودن به سبد</a>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="product_content list_content">
+                                        <h4 class="product_name"><a href="{% url 'productview' p.ProductName %}">{{p.getsnippet}}...</a></h4>
+                                        <div class="product_rating">
+                                            <ul>
+                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="price_box">
+                                            {% comment %} <span class="old_price">80,000 تومان</span> {% endcomment %}
+                                            <span class="current_price">{{p.price}}</span>
+                                        </div>
+                                        <div class="product_desc">
+                                            <p>{{p.ProductBody2}}</p>
+                                        </div>
+                                        <div class="add_to_cart">
+                                            {% if user.is_authenticated %}
+                                            <a href="" id="add_api_cart" onclick="add_api_cart('{{ p.id }}')"  title="افزودن به سبد">افزودن به سبد</a>
+                                            {% else %}
+                                            <a href="{% url 'loginview' %}"  title="افزودن به سبد">افزودن به سبد</a>
+                                            {% endif %}                                        
+                                        </div>
+                                        <div class="action_links">
+                                            <ul>
+                                                {% if user.is_authenticated %}
+                                                <li class="wishlist"><a href="" onclick="add_wish_list_api('{{p.id}}')" id="add_wish_list_api" title="افزودن به علاقه‌مندی‌ها"><i class="ion-android-favorite-outline"></i></a></li>
+                                                {% else %}
+                                                <li class="wishlist"><a href="{% url 'loginview' %}" title="افزودن به علاقه‌مندی‌ها"><i class="ion-android-favorite-outline"></i></a></li>
+                                                {% endif %}                                                
+                                                <li class="compare"><a href="{% url 'com' %}" title="افزودن به مقایسه"><i class="ion-ios-settings-strong"></i> مقایسه</a></li>
+                                                <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box" title="مشاهده سریع"><i class="ion-ios-search-strong"></i> نمایش سریع</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </figure>
+                            </article>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--shop  area end-->
+{% endblock body %}

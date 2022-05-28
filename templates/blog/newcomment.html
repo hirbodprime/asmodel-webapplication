@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="{% url 'homeview' %}">خانه</a></li>
+                        <li>کامنت جدید</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="blog_bg_area">
+    <div class="container">
+        <h3>کامنت خود را بزارید</h3>
+        <p>ایمیل شما منتشر نخواهد شد. فیلد های الزامی با * مشخص شده اند</p>
+        <div class="blog_page_section">
+            <div class="row">
+                <div class="col-lg-9 col-md-12">
+                    <div class="blog_wrapper blog_details">
+                        <div class="comments_form">
+                            <div class="row">      
+                                <form action="" method="POST">
+                                    {% csrf_token %}
+                                    {{fc.as_p}}
+                                    <button class="button" type="submit">ارسال دیدگاه</button>
+                                {% comment %} <div class="row">
+                                    
+                                    <div class="col-12">
+                                        <label for="review_comment">دیدگاه </label>
+                                        <textarea name="comment" id="review_comment"></textarea>
+                                    </div>
+                                    <div class="col-lg-4 col-md-4">
+                                        <label for="author">نام</label>
+                                        <input id="author" type="text">
+
+                                    </div>
+                                    <div class="col-lg-4 col-md-4">
+                                        <label for="email">ایمیل </label>
+                                        <input id="email" type="text" dir="ltr">
+                                    </div>
+                                    <div class="col-lg-4 col-md-4">
+                                        <label for="website">وب‌سایت </label>
+                                        <input id="website" type="text"> 
+                                    </div>
+                                </div>  {% endcomment %}
+                                </form>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock body %}

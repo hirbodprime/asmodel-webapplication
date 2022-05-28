@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html class="no-js" lang="fa" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>فروشگاه مسترساختمان</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/categoriespics/logo1.png' %}">
+
+	<meta name="theme-color" content="#c40316">
+
+     <!-- CSS 
+    ========================= -->
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="{% static 'css/plugins.css'%}">
+    
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    
+
+</head>
+
+<body>
+
+    <!--coming soon area start-->
+    <div class="coming_soon_area js-ripples">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="coming_soon_container">
+                        <div class="coming_soon_logo text-center">
+                            <a href="{% url 'HomeView' %}"><img src="{% static 'img/categoriespics/log1.jpeg'%}" alt=""></a>
+                        </div>
+
+                        <div class="coming_soon_title">
+                            <h2>به زودی</h2>
+                            <p>اگه به این  صفحه منتقل شدی یعنی صفحه ای که دنبالشی توسط تیم برنامه نویسی ما در دست ساخته و بزودی درست میشه:)</p>
+                            <h2><a href="{% url 'HomeView' %}">خانه</a></h2>
+                        </div>
+                        {% comment %} <div class="coming_soon_timing">
+                            <div data-countdown="2045/12/15"></div>
+                        </div> {% endcomment %}
+
+
+                        <div class="coming_soon_newsletter">
+                            <div class="subscribe_form">
+                                <!-- mailchimp-alerts Start -->
+                                <div class="mailchimp-alerts text-centre">
+                                    <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                                    <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+                                    <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+                                </div><!-- mailchimp-alerts end -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--coming soon area end-->
+
+
+<!-- JS
+============================================ -->
+<!-- Plugins JS -->
+<script src="{% static 'js/plugins.js'%}"></script>
+
+<!-- Main JS -->
+<script src="{% static 'js/main.js'%}"></script>
+
+
+
+</body>
+
+</html>

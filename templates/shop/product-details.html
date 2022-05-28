@@ -1,0 +1,325 @@
+{% extends 'base.html' %}
+{% load static %}
+{%block linkcss%}
+<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/semantic.min.css' %}">
+<script src="{% static 'js/semantic.min.js' %}"></script>
+{%endblock linkcss%}
+
+{% block body %}
+<!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'homeview' %}">خانه</a></li>
+                            <li>جزئیات محصول</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <div class="product_page_bg">
+        
+        <div class="container">
+            <div class="product_details_wrapper mb-55">
+                <!--product details start-->
+                <div class="product_details">
+                    
+                    <div class="row">
+                        <div class="col-lg-5 col-md-6">
+                            {% comment %} {% for p in pro %} {% endcomment %}
+                            <div class="product-details-tab">
+                                <div id="img-1" class="zoomWrapper single-zoom">
+                                    <a href="#">
+                                        <img id="zoom1" src="{{p.image.url}}" data-zoom-image="{{p.image.url}}" alt="big-1">
+                                    </a>
+                                </div>
+                                
+                                <div class="single-zoom-thumb">
+                                    <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
+                                        {% if p.image2.url != None %}  
+                                                <li>
+                                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{p.image.url}}" data-zoom-image="{{p.image.url}}">                                          
+                                                        <img src="{{p.image.url}}" alt="zo-th-1">                         
+                                                    </a>
+                                                </li>          
+                                        {% endif %}
+                                        {% if p.image2.url != None %}  
+                                                <li>
+                                                    <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{p.image2.url}}" data-zoom-image="{{p.image2.url}}">                                          
+                                                        <img src="{{p.image2.url}}" alt="zo-th-1">                         
+                                                    </a>
+                                                </li> 
+                                        {% else %}
+                                                <li>
+                                                    <a href="#" class="elevatezoom-gallery active" >
+                                                        <img src="" >
+                                                    </a>
+    
+                                                </li>         
+                                        {% endif %}
+                                        {% if p.image3.url != None %}
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{p.image3.url}}" data-zoom-image="{{p.image3.url}}">
+                                                    <img src="{{p.image3.url}}" >
+                                                </a>
+
+                                            </li>
+                                        {% else %}
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" >
+                                                    <img src="" >
+                                                </a>
+
+                                            </li>
+                                        {% endif %}   
+                                        {% if p.image4.url != None %}
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{p.image4.url}}" data-zoom-image="{{p.image4.url}}">
+                                                    <img src="{{p.image4.url}}" >
+                                                </a>
+
+                                            </li>
+                                        {% else %}
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" >
+                                                    <img src="" >
+                                                </a>
+
+                                            </li>
+                                        {% endif %}
+                                        {% if p.image5.url != None %}
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" data-update="" data-image="{{p.image5.url}}" data-zoom-image="{{p.image5.url}}">
+                                                    <img src="{{p.image5.url}}" >
+                                                </a>
+
+                                            </li>
+                                        {% else %}
+                                            <li>
+                                                <a href="#" class="elevatezoom-gallery active" >
+                                                    <img src="" >
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                                
+                            </div>
+                            {% comment %} {% endfor %} {% endcomment %}
+                        </div>
+                        
+                        <div class="col-lg-7 col-md-6">
+                            {% comment %} {% for p in pro %} {% endcomment %}
+                            <div class="product_d_right">
+                                {% comment %} <form action="#"> {% endcomment %}
+
+                                    <h3><a href="#">{{p.ProductName}}</a></h3>
+                                    <div class="product_rating">
+                                        <ul>
+                                            {% comment %} <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                            <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                            <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                            <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                            <li><a href="#"><i class="ion-android-star-outline"></i></a></li> {% endcomment %}
+                                            <li class="review"><a href="#">( {{c_count}} نقد و بررسی )</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="price_box">
+                                        {% comment %} <span class="old_price">۲۰۰ تومان </span> {% endcomment %}
+                                        <span class="current_price">{{p.show_price}} تومان</span>
+                                    </div>
+                                    <div class="product_desc">
+                                        <p>{{p.ProductBody2}}</p>
+                                    </div>
+                                    <div class="product_variant color">
+                                        <h3>گزینه های در دسترس</h3>
+                                        <label>رنگ</label>
+                                        <p>کارخانه ی تولیدی : <a href="{% url 'subproshopview' p.category.some %}"> {{p.category.some}}</a> </p>
+                                    </div>
+                                    <div class="product_variant quantity">
+                                        <label>تعداد</label>
+                                        <input min="1" max="100" value="1" type="number">
+                                        {% comment %} {% url 'addtocartview' p.id %} {% endcomment %}
+                                        {% if user.is_authenticated %}
+                                             <button ><a style="color:white" href="" id="add_api_cart" onclick="add_api_cart('{{ p.id }}')"  title="افزودن به سبد">افزودن به سبد</a></button>
+                                        {% else %}
+                                            <a href="{% url 'loginview' %}"  title="افزودن به سبد">افزودن به سبد</a>
+                                        {% endif %}
+
+                                    </div>
+                                    <div class=" product_d_action">
+                                        <ul>
+                                                {% if user.is_authenticated %}
+                                                <li><a href="" onclick="add_wish_list_api('{{p.id}}')" id="add_wish_list_api" title="افزودن به علاقه‌مندی‌ها">+ افزودن به علاقه‌مندی‌ها</a></li>
+                                                {% else %}
+                                                <li><a href="{% url 'loginview' %}"  title="افزودن به علاقه‌مندی‌ها">+ افزودن به علاقه‌مندی‌ها</a></li>
+                                                {% endif %}
+                                            <li><a href="{% url 'com' %}" title="افزودن به علاقه‌مندی‌ها">+ مقایسه</a></li>
+                                        </ul>
+                                    </div>
+                                {% comment %} </form> {% endcomment %}
+                                <div class="priduct_social">
+                                    <ul>
+                                        <li><a class="facebook" href="https://www.facebook.com/profile.php?id=100078276889687" target="_blank" title="facebook"><i class="fa fa-facebook"></i> فیسبوک</a></li>
+                                        <li><a class="twitter" href="https://twitter.com/mastersakhteman" title="twitter" target="_blank"><i class="fa fa-twitter"></i> توییتر</a></li>
+                                        {% comment %} <li><a class="pinterest" href="#" title="pinterest"><i class="fa fa-pinterest"></i> ذخیره</a></li>
+                                        <li><a class="google-plus" href="#" title="google +"><i class="fa fa-google-plus"></i> اشتراک گذاری</a></li>
+                                        <li><a class="linkedin" href="#" title="linkedin"><i class="fa fa-linkedin"></i> لینکدین</a></li> {% endcomment %}
+                                    </ul>
+                                </div>
+
+                            </div>
+                            {% comment %} {% endfor %} {% endcomment %}
+                        </div>
+                    </div>
+                    
+                </div>
+                <!--product details end-->
+
+                <!--product info start-->
+                <div class="product_d_info">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="product_d_inner">
+                                <div class="product_info_button">
+                                    <ul class="nav" role="tablist">
+                                        <li>
+                                            <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info" aria-selected="false">توضیحات</a>
+                                        </li>
+                                        <li>
+                                            <a data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet" aria-selected="false">مشخصات فنی</a>
+                                        </li>
+                                        <li>
+                                            <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="false">({{c_count}}) نقد و برررسی </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content">
+                                    {% comment %} {% for p in pro %} {% endcomment %}
+                                    <div class="tab-pane fade show active" id="info" role="tabpanel">
+                                        <div class="product_info_content">
+                                            <p>{{p.ProductBody}}</p>
+                                        </div>
+                                    </div>
+                                    {% comment %} {% endfor %} {% endcomment %}
+                                    {% comment %} <div class="tab-pane fade" id="sheet" role="tabpanel">
+                                        <div class="product_d_table">
+                                            <form action="#">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="first_child">جنس</td>
+                                                            <td>پلی استر</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="first_child">سبک ها</td>
+                                                            <td>دخترانه</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="first_child">خصوصیات</td>
+                                                            <td>پیراهن کوتاه</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </form>
+                                        </div>
+                                        <div class="product_info_content">
+                                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و</p>
+                                        </div>
+                                    </div> {% endcomment %}
+
+                                    <div class="tab-pane fade" id="reviews" role="tabpanel">
+                                        <div class="reviews_wrapper">
+                                            <h2>{{c_count}} نقد و بررسی برای این محصول</h2>
+                                            {% for c in com %}
+                                            <div class="reviews_comment_box">
+                                                <div class="comment_thmb">
+                                                    <img src="{% static 'img/blog/comment2.jpg'%}" alt="">
+                                                </div>
+                                                <div class="comment_text">
+                                                    <div class="reviews_meta">
+                                                        {% comment %} <div class="product_rating">
+                                                            <ul>
+                                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                                <li><a href="#"><i class="ion-android-star-outline"></i></a></li>
+                                                            </ul>
+                                                        </div> {% endcomment %}
+                                                        <p><strong>{{c.user}}</strong>{{c.commentPosted_Date}}</p>
+													</div>
+													<p>{{c.content}}</p>
+												</div>
+                                            </div>
+                                            {% endfor %}
+                                            <div class="comment_title">
+                                                {% comment %} {% for p in pro %} {% endcomment %}
+                                                <h2> <a href="{% url 'commentviewshop' p.ProductName %}"> یک نقد و بررسی بنویسید </a></h2>
+                                                {% comment %} {% endfor %} {% endcomment %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--product info end-->
+            </div>
+
+            <!--product area start-->
+            <section class="product_area related_products">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section_title">
+                            <h2>محصولات مرتبط </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="product_carousel product_style product_column5 owl-carousel">
+                    {% comment %} <article class="single_product">
+                        <figure>
+
+                            <div class="product_thumb">
+                                <a class="primary_img" href="product-details.html"><img src="{% static 'img/product/product14.jpg'%}" alt=""></a>
+                                <a class="secondary_img" href="product-details.html"><img src="{% static 'img/product/product13.jpg'%}" alt=""></a>
+                                <div class="label_product">
+                                    <span class="label_sale">فروش</span>
+                                </div>
+                                <div class="action_links">
+                                    <ul>
+                                        <li class="wishlist"><a href="wishlist.html" title="افزودن به علاقه‌مندی‌ها"><i class="ion-android-favorite-outline"></i></a></li>
+                                        <li class="compare"><a href="#" title="افزودن به مقایسه"><i class="ion-ios-settings-strong"></i></a></li>
+                                        <li class="quick_button"><a href="#" data-toggle="modal" data-target="#modal_box" title="مشاهده سریع"><i class="ion-ios-search-strong"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="product_content">
+                                <div class="product_content_inner">
+                                    <h4 class="product_name"><a href="product-details.html">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت</a></h4>
+                                    <div class="price_box">
+                                        <span class="old_price">80,000 تومان</span>
+                                        <span class="current_price">70,000 تومان</span>
+                                    </div>
+                                </div>
+                                <div class="add_to_cart">
+                                    <a href="cart.html" title="افزودن به سبد">افزودن به سبد</a>
+                                </div>
+
+                            </div>
+                        </figure>
+                    </article> {% endcomment %}
+                </div>
+            </section>
+        </div>
+    </div>
+    
+{% endblock body %}    

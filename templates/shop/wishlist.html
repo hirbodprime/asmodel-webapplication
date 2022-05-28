@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'homeview' %}">خانه</a></li>
+                            <li>لیست علاقه‌مندی‌ها</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <!--wishlist area start -->
+    <div class="wishlist_page_bg">
+        <div class="container">
+            <div class="wishlist_area">
+                <div class="wishlist_inner">
+                    <form action="#">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table_desc wishlist">
+                                    <div class="cart_page table-responsive">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th class="product_remove">حذف</th>
+                                                    <th class="product_thumb">تصویر</th>
+                                                    <th class="product_name">محصول</th>
+                                                    <th class="product-price">قیمت</th>
+                                                    <th class="product_quantity">وضعیت انبار</th>
+                                                    <th class="product_total">افزودن به سبد</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for w in wish %}
+                                                <tr>
+                                                    <td class="product_remove"><a href="" id="delete_api_wish" onclick="delete_api_wish('{{ w.5 }}')">×</a></td>
+                                                    <td class="product_thumb"><a href="#"><img src="{{w.1.url}}" alt=""></a></td>
+                                                    <td class="product_name"><a href="#">{{w.0}}</a></td>
+                                                    <td class="product-price">{{w.3}}</td>
+                                                    <td class="product_quantity">موجود در انبار</td>
+                                                    <td class="product_total"><a onclick="add_api_cart('{{w.4}}')" id="add_api_cart">افزودن به سبد</a></td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="wishlist_share">
+                            <h4>ارتباط با ما در :</h4>
+                            <ul>
+                                <li><a href="https://wa.me/message/OPTJ7AW7M7MOC1"><i class="fa fa-whatsapp"></i></a></li>
+                                <li><a href="https://t.me/Mastersakhteman"><i class="fa fa-telegram"></i></a></li>
+                                <li><a href="https://www.facebook.com/profile.php?id=100078276889687"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="https://instagram.com/mastersakhteman"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="https://twitter.com/mastersakhteman"><i class="fa fa-twitter"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--wishlist area end -->
+    {% endblock body %}

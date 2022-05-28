@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'homeview' %}">خانه</a></li>
+                            <li>بلاگ</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <div class="blog_bg_area">
+        <div class="container">
+            <!--blog area start-->
+            <div class="row">
+                <div class="col-12">
+                    <div class="blog_wrapper blog_nosidebar mb-60">
+                        <div class="blog_header">
+                            <h1>بلاگ</h1>
+                        </div>
+                        <div class="blog_wrapper_inner">
+                            {% for b in blog %}
+                            <article class="single_blog">
+                                <figure>
+                                    <div class="blog_thumb">
+                                        <a href="{% url 'blogdetailview' b.BlogTitle %}"><img src="{{b.BlogImage.url}}" alt=""></a>
+                                    </div>
+                                    <figcaption class="blog_content">
+                                        <h4 class="post_title"><a href="{% url 'blogdetailview' b.BlogTitle %}">{{b.BlogTitle}} </a></h4>
+                                        <div class="blog_meta">
+                                            <span class="author">ارسال توسط : {{b.writer}} / </span>
+                                            <span class="meta_date">ارسال شده در :{{b.Blog_Created_At}}</span>
+                                        </div>
+                                        <div class="blog_desc">
+                                            <p>{{b.getsnippets}}...</p>
+                                        </div>
+                                        <footer class="btn_more">
+                                            <a href="{% url 'blogdetailview' b.BlogTitle %}"> بیشتر بخوانید</a>
+                                        </footer>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                            {% endfor %}
+                            {% comment %} <article class="single_blog single_blog_gallery">
+                                <figure>
+                                    <div class="blog_thumb blog_thumb_active owl-carousel">
+                                        <div class="single_blog_thumb">
+                                            <a href="#"><img src="{% static 'img/blog/blogpage2.jpg'%}" alt=""></a>
+                                        </div>
+                                        <div class="single_blog_thumb">
+                                            <a href="#"><img src="{% static 'img/blog/blogpage1.jpg'%}" alt=""></a>
+                                        </div>
+                                        <div class="single_blog_thumb">
+                                            <a href="#"><img src="{% static 'img/blog/blogpage3.jpg'%}" alt=""></a>
+                                        </div>
+                                        <div class="single_blog_thumb">
+                                            <a href="#"><img src="{% static 'img/blog/blogpage4.jpg'%}" alt=""></a>
+                                        </div>
+                                    </div>
+                                    <figcaption class="blog_content">
+                                        <h4 class="post_title"><a href="blog-details.html">مطلب دارای گالری</a></h4>
+                                        <div class="blog_meta">
+                                            <span class="author">ارسال توسط : <a href="#">مدیر</a> / </span>
+                                            <span class="meta_date">ارسال شده در :  <a href="#">22 اسفند 1398</a></span>
+                                        </div>
+                                        <div class="blog_desc">
+                                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد</p>
+                                        </div>
+                                        <footer class="btn_more">
+                                            <a href="blog-details.html"> بیشتر بخوانید</a>
+                                        </footer>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                            <article class="single_blog">
+                                <figure>
+                                    <div class="blog_thumb">
+                                        <a href="blog-details.html"><img src="{% static 'img/blog/blogpage3.jpg'%}" alt=""></a>
+                                    </div>
+                                    <figcaption class="blog_content">
+                                        <h4 class="post_title"><a href="blog-details.html">مطلب بلاگ صوتی</a></h4>
+                                        <div class="blog_meta">
+                                            <span class="author">ارسال توسط : <a href="#">مدیر</a> / </span>
+                                            <span class="meta_date">ارسال شده در :  <a href="#">22 اسفند 1398</a></span>
+                                        </div>
+                                        <div class="blog_aduio_icone">
+                                            <audio controls>
+												<source src="{% static 'audio/sound.mp3'%}" type="audio/mp3">
+                                            </audio>
+                                        </div>
+                                        <div class="blog_desc">
+                                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد </p>
+                                        </div>
+                                        <footer class="btn_more">
+                                            <a href="blog-details.html"> بیشتر بخوانید</a>
+                                        </footer>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                            <article class="single_blog blog_bidio">
+                                <figure>
+                                    <div class="blog_thumb">
+										<iframe src="https://www.aparat.com/video/video/embed/videohash/f6hW3/vt/frame" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    </div>
+                                    <figcaption class="blog_content">
+                                        <h4 class="post_title"><a href="blog-details.html">مطلب بلاگ ویدیویی</a></h4>
+                                        <div class="blog_meta">
+                                            <span class="author">ارسال توسط : <a href="#">مدیر</a> / </span>
+                                            <span class="meta_date">ارسال شده در :  <a href="#">22 اسفند 1398</a></span>
+                                        </div>
+                                        <div class="blog_desc">
+                                            <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد</p>
+                                        </div>
+                                        <footer class="btn_more">
+                                            <a href="blog-details.html"> بیشتر بخوانید</a>
+                                        </footer>
+                                    </figcaption>
+                                </figure>
+                            </article> {% endcomment %}
+                        </div>
+                    </div>
+                    <!--blog pagination area start-->
+                    {% comment %} <div class="blog_pagination">
+                        <div class="pagination">
+                            <ul>
+                                <li class="current">1</li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li class="next"><a href="#">بعدی</a></li>
+                                <li><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
+                            </ul>
+                        </div>
+                    </div> {% endcomment %}
+                    <!--blog pagination area end-->
+                </div>
+            </div>
+            <!--blog area end-->
+        </div>
+    </div>
+
+{% endblock body %}

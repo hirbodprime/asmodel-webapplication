@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    <!--breadcrumbs area start-->
+    <div class="breadcrumbs_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadcrumb_content">
+                        <ul>
+                            <li><a href="{% url 'homeview' %}">خانه</a></li>
+                            <li>پروفایل</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--breadcrumbs area end-->
+
+    <!-- my account start  -->
+    <div class="account_page_bg">
+        <div class="container">
+            <section class="main_content_area">
+                <div class="account_dashboard">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-3 col-lg-3">
+                            <!-- Nav tabs -->
+                            <div class="dashboard_tab_button">
+                                <ul role="tablist" class="nav flex-column dashboard-list">
+                                    <li><a href="#dashboard" data-toggle="tab" class="nav-link active">داشبورد</a></li>
+                                    <li> <a href="#orders" data-toggle="tab" class="nav-link">سفارشات</a></li>
+                                    <li><a href="#downloads" data-toggle="tab" class="nav-link">دریافت ها</a></li>
+                                    <li><a href="#address" data-toggle="tab" class="nav-link">آدرس ها</a></li>
+                                    <li><a href="#account-details" data-toggle="tab" class="nav-link">جزئیات حساب</a></li>
+                                    <li><a href="{% url 'logoutview' %}" class="nav-link">خروج</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-9 col-lg-9">
+                            <!-- Tab panes -->
+                            <div class="tab-content dashboard_content">
+                                <div class="tab-pane fade show active" id="dashboard">
+                                    <h3>داشبورد </h3>
+                                    
+                                    {% comment %} {% if profile %}
+                                    
+                                        <p><a href="">گوز۱</a></p>
+                                        <p><a href="">گوز۲</a></p>
+                                        <p><a href="">گوز۳</a></p>
+                                        <p><a href="">گوز۴</a></p>
+                                    {% endif %} {% endcomment %}
+                                    {% comment %} <div class="grid-20">
+                                        <ul>
+                                            <li><a href="{% url 'accounts:edit_profile' %}">Edit Profile</a></li>
+                                            <li><a href="{% url 'accounts:change_password' %}">Change Password</a></li>
+                                        </ul>
+                                    </div> {% endcomment %}
+                                    <div class="grid-80">
+                                        {% if not profile.username %}
+                                            <p>پروفایل خالی میباشذ</p>
+                                            {% comment %} <a href="{% url 'accounts:edit_profile' %}">Add some info</a> {% endcomment %}
+                                        {% else %}
+                                            <div class="grid-50">
+                                                <p><span class="underline"> یوزرنیم</span>: {{ profile.username }}</p>
+                                                {% if profile.first_name %}
+                                                <p><span class="underline">نام</span>: {{ profile.first_name }}</p>
+                                                {% endif %}
+                                                <p><span class="underline">ایمیل</span>: {{ profile.email }}</p>
+                                                
+                                                {% if profile.city %}
+                                                <p><span class="underline">شهر</span>: {{ profile.city }}</p>
+                                                {% endif %}
+                                                {% if profile.state %}
+                                                <p><span class="underline">وضعیت</span>: {{ profile.state }}</p>
+                                                {% endif %}
+                                                {% if profile.country %}
+                                                <p><span class="underline">کشور</span>: {{ profile.country }}</p>
+                                                {% endif %}
+                                            </div>
+                                            <div class="grid-50">
+                                                {% if profile.last_name %}
+                                                <p><span class="underline">نام خانوادگی</span>: {{ profile.last_name }}</p>
+                                                {% endif %}
+                                                {% if profile.birth_date %}
+                                                <p><span class="underline">تاریخ تولد</span>: {{ profile.birth_date }}</p>
+                                                {% endif %}
+                                                {% comment %} <p><span class="underline">Favorite Animal</span>: {{ profile.favorite_animal }}</p>
+                                                <p><span class="underline">Hobby</span>: {{ profile.hobby }}</p> {% endcomment %}
+                                            </div>
+                                            {% comment %} <div class="grid-100">
+                                                <p><span class="underline">Bio</span>: {{ profile.bio|safe }}</p>
+                                            </div> {% endcomment %}
+                                        {% endif %}
+                                        {% comment %} <p><a href="{% url 'reset_password' %}">تغییر رمز عبور</a></p> {% endcomment %}
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="orders">
+                                    <h3>سفارشات</h3>
+                                    {% comment %} <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>ترتیب</th>
+                                                    <th>تاریخ</th>
+                                                    <th>وضعیت</th>
+                                                    <th>جمع</th>
+                                                    <th>اقدامات</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>10 تیر 1397</td>
+                                                    <td><span class="success">اتمام یافته</span></td>
+                                                    <td>50,000 تومان برای یک محصول </td>
+                                                    <td><a href="cart.html" class="view">مشاهده</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>10 تیر 1397</td>
+                                                    <td>در حال پردازش</td>
+                                                    <td>180,000 تومان برای یک محصول </td>
+                                                    <td><a href="cart.html" class="view">مشاهده</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div> {% endcomment %}
+                                </div>
+                                <div class="tab-pane fade" id="downloads">
+                                    <h3>دریافت ها</h3>
+                                    {% comment %} <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>محصول</th>
+                                                    <th>دریافت ها</th>
+                                                    <th>انقضا</th>
+                                                    <th>دریافت</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم</td>
+                                                    <td>10 تیر 1397</td>
+                                                    <td><span class="danger">منقضی شده</span></td>
+                                                    <td><a href="#" class="view">برای دریافت فایل خود کلیک کنید</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>لورم ایپسوم متن ساختگی با تولید سادگی</td>
+                                                    <td>11 مرداد 1397</td>
+                                                    <td>هرگز</td>
+                                                    <td><a href="#" class="view">برای دریافت فایل خود کلیک کنید</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div> {% endcomment %}
+                                </div>
+                                {% comment %} <div class="tab-pane" id="address">
+                                    <p>آدرس های زیر به صورت پیش فرض در صفحه سفارش شما استفاده خواهند شد.</p>
+                                    <h4 class="billing-address">آدرس صورت حساب</h4>
+                                    <a href="#" class="view">ویرایش</a>
+                                    <p><strong>جان اسنو</strong></p>
+									<address>
+										ایران<br>
+										آذربایجان شرقی<br>
+										تبریز<br>
+										چهارراه آبرسان، فلکه دانشگاه، برج بلور، طبقه 456، واحد 89
+									</address>
+                                </div> {% endcomment %}
+                                <div class="tab-pane fade" id="account-details">
+                                    <h3>جزئیات حساب </h3>
+                                    <form action="#">
+                                        {% csrf_token %}
+                                        {{form.as_p}}
+                                         <div class="save_button primary_btn default_button">
+                                             <button type="submit">ذخیره</button>
+                                         </div>
+                                     </form>
+                                    <div class="login">
+                                        <div class="login_form_container">
+                                            <div class="account_login_form">
+                                               
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!-- my account end   -->
+
+{% endblock body %}

@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+    {% comment %} {% block css %}
+        <!--suppress CssInvalidPropertyValue -->
+        <style>
+        .quantity{
+                background: rgba(111,000,000,0)
+        }
+        </style>
+        {% endblock css %} {% endcomment %}
+
+ <!-- Breadcumbs start -->
+
+{#  برای پیدا کردن محتوای صفحه به جز هدر و فوتر این موارد رو سرچ کن #}
+<h1>پرداخت موفق بوده است</h1>
+<div>
+    <p>
+        <label>مبلغ کل : {{ data.amount }}</label>
+    </p>
+</div>
+
+
+ <!-- Product Category start -->
+    <section class="e-shopcart-wrap">
+        <div class="container">
+        {% if data.show_sabad %}
+            <div class="row">
+                <div class="col-xl-9 col-lg-12">
+                    <div class="e-shopcart-sec">
+                        <div class="shopcart-table-wrap mb-30">
+                            <form class="table-responsive">
+                                <table class="shopcart-table">
+                                    <thead>
+                                    <tr>
+                                        <th>محصول </th>
+                                        <th>تعداد </th>
+                                        <th>قیمت </th>
+                                        <th>قیمت جمع </th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for i in data.pro %}
+                                        {% if i.1 %}
+                                    <tr>
+                                        <td>
+                                            <div class="sc-productwrap">
+                                                <a href="{% url 'product_details' i.5 i.4  %}" class="sc-product-thumb">
+                                                    <img src={% static "images/index1/shopcart01.jpg"%} alt={{ i.0 }} class="img-fluid">
+                                                </a>
+                                                <div class="sc-product-details">
+                                                    <a href="{% url 'product_details' i.5 i.4  %}" class="sc-product-ttl">{{ i.0}}</a>
+{#                                                    <p class="sc-product-sz">اندازه: متوسط </p>#}
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="quantity-box">
+                                                <input type="text" class="quantity" value="{{ i.1 }}" readonly>
+                                                <span class="quantity-minus pa-sub quantity-icon" value="{{ i.4 }}" onclick="delete_cart_num('{{ i.4 }}')"> - </span>
+                                                <span class="quantity-plus  pa-add quantity-icon" value="{{ i.4 }}" onclick="add_api_cart2('{{ i.4 }}')"> + </span>
+                                            </div>
+                                        </td>
+                                        <td><span class="sc-product-prc">{{ i.2 }} تومان</span></td>
+                                        <td><span class="sc-product-prc">{{ i.3 }}</span></td>
+                                        <td>
+                                            <form action="#" method="post">
+                                            <input type="hidden" value="{{ i.4 }}">
+{#                                            <button type="submit" class="sc-produc-remove e-remove-product" value="{{ i.4 }}" onclick="delete_cart('{{ i.4 }}')">#}
+                                             <a class="sc-produc-remove e-remove-product" value="{{ i.4 }}" onclick="delete_cart('{{ i.4 }}')">
+                                                <img src={% static "images/index1/svg/cut.svg"%} alt="icon">
+                                                </a>
+{#                                            </button>#}
+
+                                        </form>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+{#        {% else %}#}
+{#            <div class="container-fluid mt-100">#}
+{#                <div class="row">#}
+{#                    <div class="col-md-12">#}
+{#                        <div class="no-price" style="background-color:#ebeeee; border-radius: 15px; width: 700px;padding: 35px;margin: 0 auto 0;">#}
+{#                          <div class="no-price-p">#}
+{#                                <div class="col-sm-12 empty-cart-cls text-center"> <img src="{% static 'images/cart/cart.png' %}" width="130" height="130" class="img-fluid mb-4 mr-3">#}
+{#                                    <p style="font-size: 25px; font-weight: bold">هیچ محصولی در سبد برای نمایش وجود ندارد</p><br />#}
+{#                                    <a href="{% url 'products_home' %}" class="e-btn wishlist-ac" id="linke" data-abc="true" style="border-radius: 3px "> رفتن به فروشگاه </a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <br />#}
+{#            <br />#}
+        {% endif %}
+        </div>
+    </section>
+
+{#  برای پیدا کردن محتوای صفحه به جز هدر و فوتر این موارد رو سرچ کن #}
+<!-- Newsletter start -->
+{% endblock body %}
