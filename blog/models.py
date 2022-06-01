@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 class BlogModel(models.Model):
     writer = models.ForeignKey(User , on_delete=models.CASCADE)
     BlogTitle = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True , null=True , blank=True)
     BlogImage = models.ImageField(upload_to ='%Y/%m/%d')
     Blog_Created_At = models.DateTimeField(auto_now_add=True)
     Blog_Updated_At = models.DateTimeField(auto_now=True)
@@ -27,3 +28,5 @@ class ModelComment(models.Model):
     motherpost = models.ForeignKey(BlogModel , on_delete=models.CASCADE, blank=True , null=True)
     def __str__(self):
         return f'بلاگ مادر: {self.motherpost} '
+
+
